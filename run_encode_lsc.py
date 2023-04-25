@@ -9,9 +9,10 @@ import pandas as pd
 import json
 import numpy as np
 import argparse
+from pathlib import Path
 
 IMG_DIR = '/mnt/data/mount_4TBSSD/nmduy/webp_images'
-photo_ids = pd.read_csv(f"/mnt/data/mount_4TBSSD/nmduy/photo_ids.csv")
+photo_ids = pd.read_csv(f"data/photo_ids.csv")
 LIST_IMAGES = photo_ids['photo_id'].tolist()
 LIST_PATH_IMAGES = [f"{IMG_DIR}/{x.split('_')[-2][:4]}-{x.split('_')[-2][4:6]}-{x.split('_')[-2][6:]}/{x}.webp" if len(x) > 19 
                     else f"{IMG_DIR}/{x.split('_')[0][:4]}-{x.split('_')[0][4:6]}-{x.split('_')[0][6:]}/{x}.webp"
@@ -110,7 +111,7 @@ def get_model_dict(config):
     model_2_dict = {'model': model_2, 'vis_processors': vis_processors_2, 'txt_processors': txt_processors_2}
     return model_1_dict, model_2_dict
 
-def run_encode_unidata(ctr, dataset, unidata='img'):
+def run_encode_unidata(ctr, dataset, unidata='img', folder='save'):
     dataset.set_branch(branch=unidata)
     dataloader = make_dataloader(dataset, branch=unidata, 
                                  batch_size=int(ctr.config['batch_size']), 
@@ -119,9 +120,10 @@ def run_encode_unidata(ctr, dataset, unidata='img'):
     enc = enc.cpu().numpy()
     enc_ori_1 = enc_ori_1.cpu().numpy()
     enc_ori_2 = enc_ori_2.cpu().numpy()
-    np.save(f'hada_{unidata}_ft.npy', enc)
-    np.save(f'blip_{unidata}_ft.npy', enc_ori_1)
-    np.save(f'clip_{unidata}_ft.npy', enc_ori_2)
+    Path(f"EncodedLifelog/{folder}").mkdir(parents=True, exist_ok=True)
+    np.save(f'EncodedLifelog/{folder}/hada_{unidata}_ft.npy', enc)
+    np.save(f'EncodedLifelog/{folder}/blip_{unidata}_ft.npy', enc_ori_1)
+    np.save(f'EncodedLifelog/{folder}/clip_{unidata}_ft.npy', enc_ori_2)
     
 def run_main(args):
     config_path = args.config_path
@@ -155,14 +157,14 @@ def run_main(args):
     
     if run_mode in ['img', 'image', 'imgs', 'images', 'both']:
         print('ENCODING IMAGES ...')
-        run_encode_unidata(controller, dataset, unidata='img')
+        run_encode_unidata(controller, dataset, unidata='img', folder=config_name)
     if run_mode in ['txt', 'text', 'texts', 'caption', 'captions', 'both']:
         print('ENCODING TEXTS ...')
-        run_encode_unidata(controller, dataset, unidata='txt')
+        run_encode_unidata(controller, dataset, unidata='txt', folder=config_name)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-cp', '--config_path', type=str, default='HADA_m/Config/C5.yml', help='yml file of the config')
+    parser.add_argument('-cp', '--config_path', type=str, default='Config/C5.yml', help='yml file of the config')
     # parser.add_argument('-md', '--model_type', type=str, default='LiFu_m', help='structure of the model')
     parser.add_argument('-rm', '--run_mode', type=str, default='image', help='image, text, both')
     args = parser.parse_args()

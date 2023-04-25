@@ -1,9 +1,9 @@
 *.pyc
 *.ipynb
 */*.pth.tar
-Output/
-Config/
-EncodedLifelog/
+Output/*/
+Config/*MSCOCO*
+EncodedLifelog/*/
 Debug.ipynb
 .ipynb_checkpoints/
 __pycache__/

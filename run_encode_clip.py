@@ -136,7 +136,7 @@ def encode_text(text, model, txt_processors, is_clip=False):
     text_features = F.normalize(text_features, dim=-1)
     return text_features
 
-photo_ids = pd.read_csv(f"/mnt/data/mount_4TBSSD/nmduy/photo_ids.csv")
+photo_ids = pd.read_csv(f"data/photo_ids.csv")
 LIST_IMAGES = photo_ids['photo_id'].tolist()
 LIST_PATH_IMAGES = [f"{IMG_DIR}/{x.split('_')[-2][:4]}-{x.split('_')[-2][4:6]}-{x.split('_')[-2][6:]}/{x}.webp" if len(x) > 19 
                     else f"{IMG_DIR}/{x.split('_')[0][:4]}-{x.split('_')[0][4:6]}-{x.split('_')[0][6:]}/{x}.webp"
