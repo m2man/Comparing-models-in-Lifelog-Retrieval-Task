@@ -16,7 +16,7 @@ We uploaded the pretrained models and encoded features [here](https://drive.goog
 ## Train and Encode Feature
 If you want to train HADA models from scratch, remember to update the path in the config files in **Config** folders. Then you can train by the file `run_bash.sh`
 
-You can run `run_encode_lsc.py` to encode images and queries after training models.
+You can run `run_encode_lsc.py` to encode images and queries after training models (included in `run_bash.sh`).
 ```python
 # HADA-1 
 python run_encode_lsc.py -cp Config/Pretrain_Flickr_NoFinetune.yml -rm both
