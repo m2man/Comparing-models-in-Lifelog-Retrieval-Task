@@ -13,6 +13,13 @@ We used **mlflow-ui** to keep track the performance between configurations. Plea
 ## Pretrained Models and Encoded Features
 We uploaded the pretrained models and encoded features [here](https://drive.google.com/drive/folders/17tajfdA0TofKL0ohV7qZnu3JN4Tt0f4B?usp=share_link). Please download and put the pretrain models in **Output/llqa** folder, encoded features in **EncodedLifelog** folder.
 
+### List of Models
+| Config's Name | Models |
+| :---: | :---: |
+| `Pretrain_Flickr_NoFineTune` | HADA-1 (original version)|
+| `Pretrain_Flickr_NoFineTune_Both` | HADA-2 (modified function)|
+| `Pretrain_Flickr_5_cont_Both` | HADA-2-FT (finetuned on [LLQA dataset](https://link.springer.com/chapter/10.1007/978-3-030-98358-1_18))|
+
 ## Train and Encode Feature
 If you want to train HADA models from scratch, remember to update the path in the config files in **Config** folders. Then you can train by the file `run_bash.sh`
 

@@ -1,6 +1,7 @@
 *.pyc
 */*.pth.tar
-Output/*/
+Evaluate_Model.ipynb
+Output/llqa/*/
 Config/*MSCOCO*
 EncodedLifelog/*/
 .ipynb_checkpoints/

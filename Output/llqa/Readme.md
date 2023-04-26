@@ -1,0 +1,1 @@
+We uploaded the pretrained models and encoded features [here](https://drive.google.com/drive/folders/17tajfdA0TofKL0ohV7qZnu3JN4Tt0f4B?usp=share_link). Please download and put the pretrain models in **Output/llqa** folder, encoded features in **EncodedLifelog** folder.
