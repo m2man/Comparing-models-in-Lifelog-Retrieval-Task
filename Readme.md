@@ -39,7 +39,9 @@ python run_encode_lsc.py -cp Config/Pretrain_Flickr_5_cont_Both.yml -rm both
 You can run jupyter files: `Evaluate_BLIP_CLIP_Lifelog.ipynb` and `Evaluate_HADA_Lifelog.ipynb`
 
 ## Query Batches in Interactive Manner
-To be updated ...
+We also conducted an interactive experiment where we asked 8 volunteers to used an interactive lifelog retrieval system (with 2 different backend search engines: concept-based and embedding-based) to solve LSC'21 queries. We divided queries into 4 smaller query batches (6 queries / batch), each volunteer used system with each search engine to solve 1 batch (2 batch / user in total).
+
+The interactive system we used was [E-MyScéal](https://dl.acm.org/doi/10.1145/3512729.3533012). The backend were concept-based [MyScéal 2.0](https://dl.acm.org/doi/abs/10.1145/3463948.3469064) and embedding-based HADA. The result and the batches are in **interactive_data** folder.
 
 ## Contact
 For any issue or comment, you can directly email me at manh.nguyen5@mail.dcu.ie
